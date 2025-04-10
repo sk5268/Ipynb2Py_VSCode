@@ -2,6 +2,7 @@
   "name": "ipynb2py",
   "displayName": "Jupyter to Python Exporter",
   "description": "Export Jupyter notebooks to Python files",
+  "publisher": "sk5268",
   "version": "0.0.1",
   "icon": "images/icon.png",
   "engines": {
@@ -22,7 +23,7 @@
   "main": "./out/extension.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/Ipynb2Py_VSCode.git"
+    "url": "https://github.com/sk5268/Ipynb2Py_VSCode.git"
   },
   "contributes": {
     "commands": [
