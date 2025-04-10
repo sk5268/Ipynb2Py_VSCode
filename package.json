@@ -4,17 +4,25 @@
   "description": "Export Jupyter notebooks to Python files",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.99.0"
+    "vscode": "^1.79.0"
   },
   "categories": [
     "Other",
     "Notebooks",
-    "Data Science"
+    "Data Science",
+    "AI",
+    "Formatters",
+    "Machine Learning",
+    "Snippets"
   ],
   "activationEvents": [
     "onNotebook:jupyter-notebook"
   ],
   "main": "./out/extension.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/Ipynb2Py_VSCode.git"
+  },
   "contributes": {
     "commands": [
       {
@@ -31,7 +39,11 @@
       {
         "id": "ipynb2py-renderer",
         "displayName": "Jupyter to Python Exporter",
-        "entrypoint": "./out/renderer.js"
+        "entrypoint": "./out/renderer.js",
+        "mimeTypes": [
+          "application/x-ipynb+json",
+          "application/vnd.jupyter.cells"
+        ]
       }
     ],
     "menus": {
@@ -61,7 +73,7 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.99.0",
+    "@types/vscode": "^1.79.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
     "@typescript-eslint/eslint-plugin": "^8.28.0",
