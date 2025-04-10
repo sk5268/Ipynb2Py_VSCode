@@ -7,8 +7,7 @@ A Visual Studio Code extension that exports Jupyter Notebook as Python files.
 This extension provides a simple way to convert your Jupyter notebooks (`.ipynb` files) to Python scripts (`.py` files) directly from the VS Code interface:
 
 - Adds an "Export to Python" button in the notebook toolbar
-- Preserves code cells with `# %%` cell markers for VS Code's Python interactive mode
-- Converts markdown cells to Python comments with `# %% [markdown]` markers
+- Converts markdown cells to Python comments with `# [markdown]` markers
 - Creates Python files in the same directory as the original notebook
 
 ## How to Use
@@ -20,16 +19,6 @@ This extension provides a simple way to convert your Jupyter notebooks (`.ipynb`
 
 
 ---
----
-
-## Release Notes
-
-### 0.0.1
-
-- Initial release
-- Added "Export to Python" button to Jupyter notebook toolbar
-- Implemented basic notebook to Python file conversion
-
 ---
 
 ## Development
