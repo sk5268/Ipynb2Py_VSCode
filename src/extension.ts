@@ -74,40 +74,35 @@ async function exportNotebookToPython(notebook: vscode.NotebookDocument): Promis
 	const notebookPath = notebook.uri.fsPath;
 	const pythonPath = notebookPath.replace(/\.ipynb$/, '.py');
 	
-	let pythonContent = '# Python file generated from Jupyter notebook\n';
-	pythonContent += `# Original notebook: ${path.basename(notebookPath)}\n`;
-	pythonContent += `# Export date: ${new Date().toISOString()}\n\n`;
+	let pythonContent = '';
 	
 	// Process each cell in the notebook
 	for (const cell of notebook.getCells()) {
 		if (cell.kind === vscode.NotebookCellKind.Code) {
-			// Handle code cells
-			if (cell.document.languageId === 'python') {
-				// Add code cell content with a delimiter comment
-				pythonContent += '# %%\n';
-				
-				// Add cell metadata as comments if available
-				if (cell.metadata) {
-					const metadataStr = JSON.stringify(cell.metadata);
-					if (metadataStr !== '{}') {
-						pythonContent += `# Cell metadata: ${metadataStr}\n`;
-					}
-				}
-				
-				pythonContent += cell.document.getText() + '\n\n';
-			} else {
-				// Non-Python code cells are added as comments
-				pythonContent += `# %% [${cell.document.languageId} code - not converted]\n`;
-				pythonContent += '# ' + cell.document.getText().replace(/\n/g, '\n# ') + '\n\n';
-			}
+			// Handle code cells - add code directly
+			pythonContent += cell.document.getText() + '\n\n';
 		} else if (cell.kind === vscode.NotebookCellKind.Markup) {
 			// Handle markdown cells - convert to Python comments
 			const markdownText = cell.document.getText();
+			
+			// Add a markdown indicator
+			pythonContent += '# [markdown]\n';
+			
+			// Process markdown text and handle headings properly
 			const commentedText = markdownText
 				.split('\n')
-				.map(line => line ? `# ${line}` : '#')
+				.map(line => {
+					// If the line starts with # (markdown heading), don't add another #
+					if (line.startsWith('#')) {
+						return `# ${line.substring(1)}`;
+					} else if (line) {
+						return `# ${line}`;
+					} else {
+						return '#';
+					}
+				})
 				.join('\n');
-			pythonContent += '# %% [markdown]\n';
+			
 			pythonContent += commentedText + '\n\n';
 		}
 	}
