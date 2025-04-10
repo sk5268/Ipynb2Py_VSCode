@@ -62,7 +62,17 @@
         "mac": "cmd+alt+e",
         "when": "notebookEditorFocused && notebookType == 'jupyter-notebook'"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Jupyter to Python Exporter",
+      "properties": {
+        "ipynb2py.confirmOverwrite": {
+          "type": "boolean",
+          "default": true,
+          "description": "Ask for confirmation before overwriting existing Python files"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
