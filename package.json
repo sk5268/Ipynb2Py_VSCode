@@ -1,0 +1,74 @@
+{
+  "name": "ipynb2py",
+  "displayName": "Jupyter to Python Exporter",
+  "description": "Export Jupyter notebooks to Python files",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.99.0"
+  },
+  "categories": [
+    "Other",
+    "Notebooks",
+    "Data Science"
+  ],
+  "activationEvents": [
+    "onNotebook:jupyter-notebook"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ipynb2py.helloWorld",
+        "title": "Hello World"
+      },
+      {
+        "command": "ipynb2py.exportToPython",
+        "title": "Export to Python",
+        "icon": "$(export)"
+      }
+    ],
+    "notebookRenderer": [
+      {
+        "id": "ipynb2py-renderer",
+        "displayName": "Jupyter to Python Exporter",
+        "entrypoint": "./out/renderer.js"
+      }
+    ],
+    "menus": {
+      "notebook/toolbar": [
+        {
+          "command": "ipynb2py.exportToPython",
+          "when": "notebookType == 'jupyter-notebook'",
+          "group": "navigation"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "ipynb2py.exportToPython",
+        "key": "ctrl+alt+e",
+        "mac": "cmd+alt+e",
+        "when": "notebookEditorFocused && notebookType == 'jupyter-notebook'"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.99.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.28.0",
+    "@typescript-eslint/parser": "^8.28.0",
+    "eslint": "^9.23.0",
+    "typescript": "^5.8.2",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1"
+  }
+}
