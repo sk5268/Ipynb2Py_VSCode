@@ -32,9 +32,9 @@ export function activate(context: vscode.ExtensionContext) {
 			await exportNotebookToPython(editor.notebook);
 			vscode.window.showInformationMessage(`Notebook exported to ${path.basename(pythonPath)} successfully!`);
 			
-			 // Automatically open the exported file without asking
+			 // Open the exported file in a new tab
 			const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(pythonPath));
-			await vscode.window.showTextDocument(doc);
+			await vscode.window.showTextDocument(doc, { preview: false });
 		} catch (error) {
 			vscode.window.showErrorMessage(`Failed to export notebook: ${error instanceof Error ? error.message : String(error)}`);
 		}
