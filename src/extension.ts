@@ -26,33 +26,15 @@ export function activate(context: vscode.ExtensionContext) {
 				return;
 			}
 
-			// Confirm overwrite if Python file already exists
+			 // Get Python file path (no confirmation, just overwrite)
 			const pythonPath = editor.notebook.uri.fsPath.replace(/\.ipynb$/, '.py');
-			if (fs.existsSync(pythonPath)) {
-				const result = await vscode.window.showWarningMessage(
-					`File ${path.basename(pythonPath)} already exists. Do you want to overwrite it?`,
-					'Overwrite',
-					'Cancel'
-				);
-				if (result !== 'Overwrite') {
-					return;
-				}
-			}
-
+			
 			await exportNotebookToPython(editor.notebook);
 			vscode.window.showInformationMessage(`Notebook exported to ${path.basename(pythonPath)} successfully!`);
 			
-			// Ask if user wants to open the exported file
-			const openResult = await vscode.window.showInformationMessage(
-				'Do you want to open the exported Python file?',
-				'Open',
-				'No'
-			);
-			
-			if (openResult === 'Open') {
-				const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(pythonPath));
-				await vscode.window.showTextDocument(doc);
-			}
+			 // Automatically open the exported file without asking
+			const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(pythonPath));
+			await vscode.window.showTextDocument(doc);
 		} catch (error) {
 			vscode.window.showErrorMessage(`Failed to export notebook: ${error instanceof Error ? error.message : String(error)}`);
 		}
