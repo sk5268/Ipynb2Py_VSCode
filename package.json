@@ -3,7 +3,7 @@
   "displayName": "Jupyter to Python Exporter",
   "description": "Export Jupyter notebooks to Python files",
   "publisher": "sk5268",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.79.0"
