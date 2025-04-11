@@ -5,7 +5,7 @@ A Visual Studio Code extension that exports Jupyter Notebook as Python files.
 # Demo
 
 
-![Demo Video](https://github.com/user-attachments/assets/89a71ab1-16bb-4064-ae87-d66f41038b47)
+<video src="[generated-link](https://github.com/user-attachments/assets/89a71ab1-16bb-4064-ae87-d66f41038b47)" controls="controls"></video>
 
 
 
