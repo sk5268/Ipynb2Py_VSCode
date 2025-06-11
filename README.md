@@ -1,6 +1,7 @@
 # Jupyter to Python Exporter
 
-A Visual Studio Code extension that exports Jupyter Notebook as Python files.
+A Visual Studio Code extension that exports Jupyter Notebook as Python files. <br><br>
+## ![Install in VS Code](https://marketplace.visualstudio.com/items?itemName=sk5268.ipynb2py) <br><br>
 
 # Demo
 
